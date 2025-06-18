@@ -1,0 +1,17 @@
+[package]
+org = "uditha"
+name = "my_crud_service"
+version = "0.1.0"
+
+[build-options]
+observabilityIncluded = false
+
+[dependencies]
+mysql = "1.7.0"
+
+[[platform.java11.dependency]]
+path = "./libs/mysql-connector-j-8.0.33.jar"
+groupId = "mysql"
+artifactId = "mysql-connector-java"
+version = "8.0.28"
+
