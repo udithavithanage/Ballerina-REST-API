@@ -24,3 +24,5 @@ public function updateUser(int id, string name, string email) returns sql:Execut
 public function deleteUser(int id) returns sql:ExecutionResult|error {
     return dbClient->execute(deleteRecord(id));
 }
+
+

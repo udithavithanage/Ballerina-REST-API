@@ -2,6 +2,24 @@ import ballerina/http;
 import ballerina/sql;
 import ballerina/log;
 
+// public final mysql:Client rawClient = check new (
+//     host = "localhost",
+//     port = 3306,
+//     user = "root",
+//     password = "root",
+//     database = "userTest"    
+// );
+
+// public function initDatabase() returns error? {
+//     string sqlFilePath = "./resources/db_scripts.sql";
+
+//     // Read the entire SQL file
+//     string content = check io:fileReadString(sqlFilePath);
+
+//     sql:ParameterizedQuery query = `${content}`;
+//     sql:ExecutionResult executionResult = check rawClient->execute(query);
+// }
+
 import my_crud_service.database;
 
 
