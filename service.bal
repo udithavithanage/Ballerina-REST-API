@@ -150,5 +150,6 @@ service /users on new http:Listener(8080) {
 
 // Main function to initialize the service
 public function main() returns error? {
+    sql:ExecutionResult|error? result = database:createUsersTable();
     log:printInfo("User service started on port 8080");
 }
