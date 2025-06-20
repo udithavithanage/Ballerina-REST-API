@@ -16,10 +16,10 @@ import my_crud_service.database;
 
 service /users on new http:Listener(8080) {
 
-    // # Creates a new user in the database
-    // # + caller - HTTP caller to send the response
-    // # + req - HTTP request containing user data (name and email)
-    // # + return - Error if operation fails | nil on success
+    # Creates a new user in the database
+    # + caller - HTTP caller to send the response
+    # + req - HTTP request containing user data (name and email)
+    # + return - Error if operation fails | nil on success
     resource function post addUser(http:Caller caller, http:Request req) returns error? {
         json|error userJson = req.getJsonPayload();
         http:Response res = new;
@@ -49,10 +49,10 @@ service /users on new http:Listener(8080) {
         }
     }
 
-    // # Retrieves a user by ID from the database
-    // # + caller - HTTP caller to send the response
-    // # + id - ID of the user to retrieve
-    // # + return - Error if operation fails | nil on success
+    # Retrieves a user by ID from the database
+    # + caller - HTTP caller to send the response
+    # + id - ID of the user to retrieve
+    # + return - Error if operation fails | nil on success
     resource function get [int id] (http:Caller caller) returns error? {
         // Query user from database
         database:User|sql:Error result = database:getUserById(id);
@@ -71,10 +71,10 @@ service /users on new http:Listener(8080) {
         check caller->respond(res);
     }
 
-    // # Searches for users by name in the database
-    // # + caller - HTTP caller to send the response
-    // # + req - HTTP request containing the 'name' query parameter
-    // # + return - Error if operation fails | nil on success
+    # Searches for users by name in the database
+    # + caller - HTTP caller to send the response
+    # + req - HTTP request containing the 'name' query parameter
+    # + return - Error if operation fails | nil on success
     resource function get searchUsers(http:Caller caller, http:Request req) returns error? {
         // Get 'name' query param
         string nameParam = req.getQueryParamValue("name").toString();
@@ -97,11 +97,11 @@ service /users on new http:Listener(8080) {
         check caller->respond(res);
     }
 
-    // # Updates a user in the database by ID
-    // # + caller - HTTP caller to send the response
-    // # + id - ID of the user to update
-    // # + req - HTTP request containing updated user data (name and email)
-    // # + return - Error if operation fails | nil on success
+    # Updates a user in the database by ID
+    # + caller - HTTP caller to send the response
+    # + id - ID of the user to update
+    # + req - HTTP request containing updated user data (name and email)
+    # + return - Error if operation fails | nil on success
     resource function put updateUser/[int id](http:Caller caller, http:Request req) returns error? {
         json|error userJson = req.getJsonPayload();
         http:Response res = new;
@@ -135,11 +135,11 @@ service /users on new http:Listener(8080) {
         }
     }
 
-    // # Deletes a user from the database by ID
-    // # + caller - HTTP caller to send the response
-    // # + id - ID of the user to delete
-    // # + req - HTTP request (unused in this function)
-    // # + return - Error if operation fails | nil on success
+    # Deletes a user from the database by ID
+    # + caller - HTTP caller to send the response
+    # + id - ID of the user to delete
+    # + req - HTTP request (unused in this function)
+    # + return - Error if operation fails | nil on success
     resource function delete deleteUser/[int id](http:Caller caller, http:Request req) returns error? {
         // Delete user from database
         sql:ExecutionResult result = check database:deleteUser(id);
@@ -156,8 +156,8 @@ service /users on new http:Listener(8080) {
     }
 }
 
-// # Initializes the HTTP service and creates the users table in the database
-// # + return - Error if operation fails | nil on success
+# Initializes the HTTP service and creates the users table in the database
+# + return - Error if operation fails | nil on success
 public function main() returns error? {
     sql:ExecutionResult|error? result = database:createUsersTable();
 
